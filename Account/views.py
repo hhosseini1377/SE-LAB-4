@@ -18,4 +18,11 @@ class GetProfile(generics.RetrieveAPIView):
     def get_object(self):
         return self.request.user
 
-class ChangeProfile
+
+class ChangeProfile(generics.UpdateAPIView):
+    queryset = Account.objects.all()
+    permission_classes = (AllowAny,)
+    serializer_class = UserProfileSerializer
+
+    def get_object(self):
+        return self.request.user
